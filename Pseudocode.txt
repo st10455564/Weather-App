@@ -1,0 +1,93 @@
+// Pseudocode for initializing UI elements and calculating the average temperature
+
+FUNCTION initializeUI()
+    SET btnAverage.OnClickListener TO FUNCTION()
+        // Check if any input field is empty
+        IF isFieldEmpty(etMin1) OR isFieldEmpty(etMax1) OR isFieldEmpty(etCondition1) OR
+           isFieldEmpty(etMin2) OR isFieldEmpty(etMax2) OR isFieldEmpty(etCondition2) OR
+           isFieldEmpty(etMin3) OR isFieldEmpty(etMax3) OR isFieldEmpty(etCondition3) OR
+           isFieldEmpty(etMin4) OR isFieldEmpty(etMax4) OR isFieldEmpty(etCondition4) OR
+           isFieldEmpty(etMin5) OR isFieldEmpty(etMax5) OR isFieldEmpty(etCondition5) OR
+           isFieldEmpty(etMin6) OR isFieldEmpty(etMax6) OR isFieldEmpty(etCondition6) OR
+           isFieldEmpty(etMin7) OR isFieldEmpty(etMax7) OR isFieldEmpty(etCondition7) THEN
+            DISPLAY "Oops, some fields may be empty"
+            RETURN
+        END IF
+        
+        // Retrieve and convert text inputs to integers
+        SET mondayTextMin TO convertToInt(etMin1.text)
+        SET mondayTextMax TO convertToInt(etMax1.text)
+        SET mondayCondition TO etCondition1.text
+        SET tuesdayTextMin TO convertToInt(etMin2.text)
+        SET tuesdayTextMax TO convertToInt(etMax2.text)
+        SET tuesdayCondition TO etCondition2.text
+        SET wednesdayTextMin TO convertToInt(etMin3.text)
+        SET wednesdayTextMax TO convertToInt(etMax3.text)
+        SET wednesdayCondition TO etCondition3.text
+        SET thursdayTextMin TO convertToInt(etMin4.text)
+        SET thursdayTextMax TO convertToInt(etMax4.text)
+        SET thursdayCondition TO etCondition4.text
+        SET fridayTextMin TO convertToInt(etMin5.text)
+        SET fridayTextMax TO convertToInt(etMax5.text)
+        SET fridayCondition TO etCondition5.text
+        SET saturdayTextMin TO convertToInt(etMin6.text)
+        SET saturdayTextMax TO convertToInt(etMax6.text)
+        SET saturdayCondition TO etCondition6.text
+        SET sundayTextMin TO convertToInt(etMin7.text)
+        SET sundayTextMax TO convertToInt(etMax7.text)
+        SET sundayCondition TO etCondition7.text
+        
+        // Create Temperature objects for each day
+        SET monday TO Temperature(mondayTextMin, mondayTextMax, mondayCondition)
+        SET tuesday TO Temperature(tuesdayTextMin, tuesdayTextMax, tuesdayCondition)
+        SET wednesday TO Temperature(wednesdayTextMin, wednesdayTextMax, wednesdayCondition)
+        SET thursday TO Temperature(thursdayTextMin, thursdayTextMax, thursdayCondition)
+        SET friday TO Temperature(fridayTextMin, fridayTextMax, fridayCondition)
+        SET saturday TO Temperature(saturdayTextMin, saturdayTextMax, saturdayCondition)
+        SET sunday TO Temperature(sundayTextMin, sundayTextMax, sundayCondition)
+        
+        // Add Temperature objects to list
+        SET temperatures TO [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
+        
+        // Calculate average of max temperatures
+        SET total TO 0
+        SET count TO 0
+        FOR EACH temperature IN temperatures
+            total = total + temperature.max
+            count = count + 1
+        END FOR
+        
+        SET average TO total / count
+        
+        // Display average temperature
+        tvAverage.text = convertToString(average)
+    END FUNCTION
+END FUNCTION
+
+// Helper function to check if a field is empty
+FUNCTION isFieldEmpty(field)
+    RETURN field.text IS NULL OR field.text IS EMPTY
+END FUNCTION
+
+// Helper function to convert text to integer
+FUNCTION convertToInt(text)
+    RETURN INTEGER(text)
+END FUNCTION
+
+// Helper function to convert integer to string
+FUNCTION convertToString(integer)
+    RETURN STRING(integer)
+END FUNCTION
+
+// Data class for Temperature
+CLASS Temperature
+    CONSTRUCTOR Temperature(min, max, info)
+        SET this.min TO min
+        SET this.max TO max
+        SET this.info TO info
+    END CONSTRUCTOR
+END CLASS
+
+
+
+
