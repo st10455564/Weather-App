@@ -19,6 +19,24 @@ class Detail : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // Function to initialize UI elements on the
+        binding.btnAverage.setOnClickListener {
+
+            if (binding.etMin1.text.isNullOrEmpty() || binding.etMax1.text.isNullOrEmpty() ||
+                binding.etCondition1.text.isNullOrEmpty() || binding.etMin2.text.isNullOrEmpty() ||
+                binding.etMax2.text.isNullOrEmpty() || binding.etCondition2.text.isNullOrEmpty() ||
+                binding.etMin3.text.isNullOrEmpty() || binding.etMax3.text.isNullOrEmpty() ||
+                binding.etCondition3.text.isNullOrEmpty() || binding.etMin4.text.isNullOrEmpty() ||
+                binding.etMax4.text.isNullOrEmpty() || binding.etCondition4.text.isNullOrEmpty() ||
+                binding.etMin5.text.isNullOrEmpty() || binding.etMax5.text.isNullOrEmpty() ||
+                binding.etCondition5.text.isNullOrEmpty() || binding.etMin6.text.isNullOrEmpty() ||
+                binding.etMax6.text.isNullOrEmpty() || binding.etCondition6.text.isNullOrEmpty() ||
+                binding.etMin7.text.isNullOrEmpty() || binding.etMax7.text.isNullOrEmpty() ||
+                binding.etCondition7.text.isNullOrEmpty()
+            ) {
+                Toast.makeText(this, "Oops,some fields may be empty ", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
         binding.btnAverage.setOnClickListener {
 
